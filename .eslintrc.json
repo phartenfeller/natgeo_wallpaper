@@ -1,0 +1,12 @@
+{
+    "extends": "./node_modules/eslint-config-google/index.js",
+    "rules":{
+        "linebreak-style": 0,
+        "max-len": 0,
+        "require-jsdoc": 0,
+        "brace-style": 0
+      },
+    "parserOptions": {
+        "ecmaVersion": 6
+      }
+}
