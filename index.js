@@ -30,7 +30,7 @@ const steps = {
 };
 
 let json;
-let photoUrl;
+let gPhotoUrl;
 let filename;
 
 let i = 0;
@@ -63,7 +63,7 @@ function downloadPicture(url, filename) {
   }
 
   catch (err) {
-    clg('error in download err =>', err);
+    clg('error in download err => ' + err);
     tasker(steps.downloadPic);
   }
 };
@@ -87,7 +87,7 @@ function emptyGarbage() {
 }
 
 function getJson(url) {
-  clg('url =>' + url);
+  clg('url => ' + url);
 
   try {
     let xmlHttp = new XMLHttpRequest();
@@ -128,22 +128,26 @@ async function setWallpaper(path) {
 }
 
 function setPhotoUrl(json) {
+  let photoUrl = json.items[0].originalUrl ? json.items[0].originalUrl : json.items[0].url;
+  /*
   let photoUrlPath = jsonQuery('items[0].originalUrl', (
     {
       data: json,
     }));
+  */
 
-  // photoUrl = photoBaseUrl + photoUrlPath.value;
-  photoUrl = photoUrlPath.value;
+  console.log("test =>", json.items[0].originalUrl);
+  console.log("test2 =>", json.items[0].url);
 
   if (photoUrl === undefined) {
     clg('url undefined');
     tasker(steps.jsonUrl);
   }
-
-  clg('photoUrl => ' + photoUrl);
-
-  tasker(steps.setFN);
+  else {
+    clg('photoUrl => ' + photoUrl);
+    gPhotoUrl = photoUrl;
+    tasker(steps.setFN);
+  }
 }
 
 function setFilename() {
@@ -228,7 +232,7 @@ function tasker(step) {
       break;
 
    case steps.downloadPic:
-     downloadPicture(photoUrl, filename);
+     downloadPicture(gPhotoUrl, filename);
      break;
 
     case steps.setWP:
