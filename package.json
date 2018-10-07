@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "json-query": "^2.2.2",
+    "node-fetch": "^2.2.0",
     "request": "^2.88.0",
     "wallpaper": "^3.0.0",
     "xmlhttprequest": "^1.8.0"
