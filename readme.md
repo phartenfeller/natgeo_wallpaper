@@ -11,5 +11,5 @@ I only tested it on Windows but it should also work on Mac OS and Linux.
 I copied the `wallpaper.bat` file in my autostart folder (Win + R -> `shell:startup`) on windows to run the script on startup.
 
 ## Roadmap
-- [] Fix bug that sometimes the Background is black on Windows
-- [] Add a better way to execute it on startup
+- [ ] Fix bug that sometimes the Background is black on Windows
+- [ ] Add a better way to execute it on startup
