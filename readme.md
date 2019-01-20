@@ -13,3 +13,5 @@ I copied the `wallpaper.bat` file in my autostart folder (Win + R -> `shell:star
 ## Roadmap
 - [ ] Fix bug that sometimes the Background is black on Windows
 - [ ] Add a better way to execute it on startup
+- [ ] Refactoring
+- [ ] Code only works if folders pics and logs exist

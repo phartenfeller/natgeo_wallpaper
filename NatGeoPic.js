@@ -70,22 +70,18 @@ module.exports = class NatGeoPic {
       });
   }
 
-  setWallpaper(fileDest) {
+  async setWallpaper(fileDest) {
     console.log(fileDest);
-    wallpaper.set(fileDest)
-      .then( _ => {
-        wallpaper.get()
-          .then(res => {
-            fileDest = fileDest.substring(1);
-            if (res.includes(fileDest)) {
-              console.log('Wallpaper set => ' + res);
-            }
-            else {
-              console.log('res =>', res);
-              console.log('fileDest =>', fileDest);
-              console.log('Error in setting Wallpaper');
-            }
-          });
-      });
+    await wallpaper.set(fileDest);
+    const path = await wallpaper.get();
+
+    if (path.includes(fileDest.replace('.', ''))) {
+      console.log('Wallpaper set => ' + path);
+    }
+    else {
+      console.log('path =>', path);
+      console.log('fileDest =>', fileDest);
+      console.log('Error in setting Wallpaper');
+    }
   }
 };
