@@ -1,1 +1,1 @@
-node .\index_new.js
+node index.js
