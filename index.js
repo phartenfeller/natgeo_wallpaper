@@ -1,4 +1,4 @@
-const NatGeoPic = require('./NatGeoPic.js');
+const { NatGeoPic } = require('./NatGeoPic.js');
 
 const natGeoPic = new NatGeoPic();
-let pic = natGeoPic.getPic();
+natGeoPic.getPic();
