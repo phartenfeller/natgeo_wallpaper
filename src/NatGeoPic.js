@@ -17,12 +17,24 @@ class NatGeoPic {
    * Main Procedure to get Pic of the Day
    */
   async getPic() {
+    this.createFolder();
     const jsonUrl = this.getJsonPath();
     const json = await this.getJson(jsonUrl);
     const photoUrl = await this.getPhotoUrl(json);
     const fileDest = this.getFileDest();
     await this.downloadImage(photoUrl, fileDest);
     await this.setWallpaper(fileDest);
+  }
+
+  /**
+   * Creates pics folder if it doesnt exists
+   */
+  createFolder() {
+    const dir = './pics';
+
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
   }
 
   /**
@@ -77,7 +89,7 @@ class NatGeoPic {
    * @return {String}
    */
   getFileDest() {
-    return '.\\pics\\' + this.getFileName();
+    return './pics/' + this.getFileName();
   }
 
   /**
