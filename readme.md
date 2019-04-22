@@ -16,7 +16,7 @@ On Mac I used automator to run the `index.js` on startup.
 - [ ] Cleanup old Pics
 - [x] Cleanup old Logs
 - [ ] Settings for cleanup
-- [ ] Better Logging
+- [x] Better Logging
 - [ ] Check if connected to Internet
 
 ## Issues
