@@ -13,7 +13,9 @@ On Mac I used automator to run the `index.js` on startup.
 
 ## Roadmap
 - [ ] Add a better way to execute it on startup
-- [ ] Cleanup old Pics and Logs (Add Settings for this)
+- [ ] Cleanup old Pics
+- [x] Cleanup old Logs
+- [ ] Settings for cleanup
 - [ ] Better Logging
 - [ ] Check if connected to Internet
 
