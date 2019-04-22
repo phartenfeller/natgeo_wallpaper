@@ -14,7 +14,9 @@ let logger: Logger;
 export async function setWallpaperOfTheDay() {
   const date = getDate();
   logger = createLogger(date);
+  logger.info('Starting execution');
   createFolders();
+  deleteOldLogs(date);
   const jsonUrl = getJsonPath(date);
   const fileDest = getFileDest(date);
 
@@ -58,6 +60,34 @@ function createFolders() {
 }
 
 /**
+ * Delete Logs from last month and older
+ * @param {DateObject} date
+ */
+function deleteOldLogs(date: DateObject) {
+  fs.readdir('./logs', (err: Error, files: string[]) => {
+    if (err) {
+      logger.error('Error in deleteOldLogs =>' + err);
+    }
+
+    files.map(file => {
+      const month = parseInt(file.split('-')[1], 10);
+      const year = parseInt(file.split('-')[0], 10);
+
+      if (month < date.month || year < date.year) {
+        fs.unlink(`./logs/${file}`, (error: Error) => {
+          if (error) {
+            logger.error(
+              'Error while deleting file ' + file + '. err =>' + error
+            );
+          }
+          logger.info(file + ' was deleted.');
+        });
+      }
+    });
+  });
+}
+
+/**
  * Gets wallpaperPath JSON with pics from current month
  * @param {Object} date Date Object
  * @return {String}
@@ -66,7 +96,7 @@ function getJsonPath(date: DateObject): string {
   const jsonUrl = `https://www.nationalgeographic.com/content/photography/en_US/photo-of-the-day/_jcr_content/.gallery.${
     date.year
   }-${date.month}.json`;
-  console.log(jsonUrl);
+  logger.info('JSON Url => ' + jsonUrl);
   return jsonUrl;
 }
 
@@ -92,7 +122,6 @@ async function getJson(jsonUrl: string): Promise<NatGeoResponse | undefined> {
     return response.json();
   } catch (err) {
     const msg = 'Error in downloadJson err => ' + err;
-    console.log(msg);
     logger.error(msg);
     return undefined;
   }
@@ -149,14 +178,13 @@ async function setWallpaper(fileDest: string) {
     const wallpaperPath = fullWallpaperPath.split('\\').pop();
     const file = fileDest.split('/').pop();
     if (wallpaperPath === file) {
-      console.log('Wallpaper set => ' + fullWallpaperPath);
+      logger.info('Wallpaper set => ' + fullWallpaperPath);
     } else {
       const msg =
         'Error in setWallpaper: wallpaperPath => ' +
         wallpaperPath +
         ' fullWallpaperPath => ' +
         fullWallpaperPath;
-      console.log(msg);
       logger.error(msg);
     }
   } catch (err) {
