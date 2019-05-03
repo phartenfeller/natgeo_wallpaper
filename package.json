@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "is-online": "^8.2.0",
     "log4js": "^4.1.0",
     "node-fetch": "^2.3.0",
     "wallpaper": "^4.2.0"

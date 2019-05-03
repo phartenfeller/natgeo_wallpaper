@@ -5,6 +5,7 @@ import { createLogger } from './logger';
 import { NatGeoResponse } from './types/NatGeoResponse';
 import { DateObject } from './types/DateObject';
 import { Logger } from 'log4js';
+import * as isOnline from 'is-online';
 
 let logger: Logger;
 
@@ -17,6 +18,13 @@ export async function setWallpaperOfTheDay() {
   logger.info('Starting execution');
   createFolders();
   deleteOldLogs(date);
+  const con = await isOnline();
+
+  if (!con) {
+    logger.error('No connection to the internet possible!');
+    return;
+  }
+
   const jsonUrl = getJsonPath(date);
   const fileDest = getFileDest(date);
 

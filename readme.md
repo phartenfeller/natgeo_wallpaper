@@ -6,6 +6,11 @@ It downloads the [National Geographic Photo of the day](https://www.nationalgeog
 I it on Windows and MacOS but it should also work for Linux.
 
 ## How to run it
+Build Project
+1. `yarn install`
+2. `yarn build`
+ 
+To execute:
 `node index.js`
 
 I copied the `wallpaper.bat` file in my autostart folder (Win + R -> `shell:startup`) on windows to run the script on startup.
@@ -17,7 +22,7 @@ On Mac I used automator to run the `index.js` on startup.
 - [x] Cleanup old Logs
 - [ ] Settings for cleanup
 - [x] Better Logging
-- [ ] Check if connected to Internet
+- [x] Check if connected to Internet
 
 ## Issues
 The Package used to set the Wallpaper doesn't support multiple Screens on Windows: [Github Issue](https://github.com/sindresorhus/wallpaper/issues/5)
