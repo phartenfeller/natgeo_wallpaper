@@ -2,3 +2,4 @@ pics
 logs
 .vscode
 node_modules
+/index.js

@@ -28,12 +28,21 @@ export async function setWallpaperOfTheDay() {
   const jsonUrl = getJsonPath(date);
   const fileDest = getFileDest(date);
 
+  if (await checkCurrentWallpaper(fileDest)) {
+    logger.info('Wallpaper already set. Cancel execution.');
+    return;
+  }
+
   try {
     const json: NatGeoResponse | undefined = await getJson(jsonUrl);
     if (json) {
       const photoUrl = getPhotoUrl(json);
       await downloadImage(photoUrl, fileDest);
-      await setWallpaper(fileDest);
+      if (fs.existsSync(fileDest)) {
+        await setWallpaper(fileDest);
+      } else {
+        logger.error(`File is not at destination: ${fileDest}`);
+      }
     } else {
       logger.error('No json received');
     }
@@ -181,21 +190,33 @@ async function downloadImage(url: string, fileDest: string) {
 async function setWallpaper(fileDest: string) {
   try {
     await wallpaper.set(fileDest);
-    const fullWallpaperPath = await wallpaper.get();
-    // Transform wallpaperPaths to only include the filenames
-    const wallpaperPath = fullWallpaperPath.split('\\').pop();
-    const file = fileDest.split('/').pop();
-    if (wallpaperPath === file) {
-      logger.info('Wallpaper set => ' + fullWallpaperPath);
+    if (await checkCurrentWallpaper(fileDest)) {
+      logger.info('Wallpaper set => ' + fileDest);
     } else {
-      const msg =
-        'Error in setWallpaper: wallpaperPath => ' +
-        wallpaperPath +
-        ' fullWallpaperPath => ' +
-        fullWallpaperPath;
+      const msg = 'Error in setWallpaper: fileDest => ' + fileDest;
       logger.error(msg);
     }
   } catch (err) {
     logger.error(err);
+  }
+}
+
+async function checkCurrentWallpaper(fileName: string): Promise<boolean> {
+  let localFilename: string | undefined = fileName;
+  const fullWallpaperPath = await wallpaper.get();
+  // Transform wallpaperPaths to only include the filenames
+  const wallpaperPath = fullWallpaperPath.split('/').pop();
+
+  if (localFilename.includes('/')) {
+    localFilename = fileName.split('/').pop();
+  }
+
+  if (wallpaperPath === localFilename) {
+    return true;
+  } else {
+    if (!localFilename) {
+      logger.error(`Could not shorten fileName: ${fileName}`);
+    }
+    return false;
   }
 }

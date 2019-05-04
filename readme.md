@@ -23,6 +23,7 @@ On Mac I used automator to run the `index.js` on startup.
 - [ ] Settings for cleanup
 - [x] Better Logging
 - [x] Check if connected to Internet
+- [x] Check if current pic is already set as wallpaper
 
 ## Issues
 The Package used to set the Wallpaper doesn't support multiple Screens on Windows: [Github Issue](https://github.com/sindresorhus/wallpaper/issues/5)
