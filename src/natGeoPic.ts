@@ -41,7 +41,8 @@ export async function setWallpaperOfTheDay() {
       if (fs.existsSync(fileDest)) {
         await setWallpaper(fileDest);
       } else {
-        logger.error(`File is not at destination: ${fileDest}`);
+        logger.info(`File is not at destination: ${fileDest}, wait 10 seconds`);
+        setTimeout(setWallpaper, 10000, fileDest);
       }
     } else {
       logger.error('No json received');
