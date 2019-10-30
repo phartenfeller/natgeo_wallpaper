@@ -16,6 +16,8 @@ To execute:
 I copied the `wallpaper.bat` file in my autostart folder (Win + R -> `shell:startup`) on windows to run the script on startup.
 On Mac I used automator to run the `index.js` on startup.
 
+You could alternatively use [pm2](https://pm2.keymetrics.io/) to configure it to run day
+
 ## Roadmap
 - [ ] Cleanup old Pics
 - [x] Cleanup old Logs
