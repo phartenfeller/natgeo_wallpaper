@@ -111,9 +111,7 @@ function deleteOldLogs(date: DateObject) {
  * @return {String}
  */
 function getJsonPath(date: DateObject): string {
-  const jsonUrl = `https://www.nationalgeographic.com/content/photography/en_US/photo-of-the-day/_jcr_content/.gallery.${
-    date.year
-  }-${date.month}.json`;
+  const jsonUrl = `https://www.nationalgeographic.com/content/photography/en_US/photo-of-the-day/_jcr_content/.gallery.${date.year}-${date.month}.json`;
   logger.info('JSON Url => ' + jsonUrl);
   return jsonUrl;
 }
@@ -151,10 +149,8 @@ async function getJson(jsonUrl: string): Promise<NatGeoResponse | undefined> {
  * @return {String}
  */
 function getPhotoUrl(json: NatGeoResponse): string {
-  const photoUrl = json.items[0].originalUrl
-    ? json.items[0].originalUrl
-    : json.items[0].url;
-  return photoUrl;
+  const lastImageObject = json.items[0];
+  return lastImageObject.image.uri;
 }
 
 /**

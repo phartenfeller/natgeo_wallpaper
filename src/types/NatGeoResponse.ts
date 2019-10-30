@@ -1,12 +1,39 @@
-export interface Sizes {
-  320: string;
-  1600: string;
-  640: string;
-  2048: string;
-  500: string;
-  1024: string;
-  800: string;
-  240: string;
+export interface SourceSystem {
+  id: string;
+  asset_id: string;
+  account?: any;
+  asset_external_field_name: string;
+}
+
+export interface AssetProvider {
+  id: string;
+  asset_id: string;
+  uri?: any;
+}
+
+export interface Rendition {
+  width: string;
+  uri: string;
+  density: string;
+  'media-selector': string;
+}
+
+export interface Image {
+  id: string;
+  uri: string;
+  title: string;
+  caption: string;
+  credit: string;
+  asset_source?: any;
+  alt_text: string;
+  aspect_ratio: number;
+  height: number;
+  width: number;
+  source_system: SourceSystem;
+  rights_system?: any;
+  asset_provider: AssetProvider;
+  renditions: Rendition[];
+  croppings: any[];
 }
 
 export interface Social {
@@ -16,20 +43,10 @@ export interface Social {
 }
 
 export interface Item {
-  title: string;
-  caption: string;
-  credit: string;
-  profileUrl: string;
-  altText: string;
-  'full-path-url': string;
-  url: string;
-  originalUrl: string;
-  aspectRatio: number;
-  sizes: Sizes;
+  image: Image;
   internal: boolean;
   pageUrl: string;
   publishDate: string;
-  yourShot: boolean;
   social: Social;
 }
 
