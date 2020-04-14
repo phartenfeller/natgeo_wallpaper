@@ -10,23 +10,23 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "is-online": "^8.2.0",
-    "log4js": "^4.1.0",
+    "is-online": "^8.3.0",
+    "log4js": "^6.2.0",
     "node-fetch": "^2.3.0",
     "wallpaper": "^4.2.0"
   },
   "devDependencies": {
     "@types/log4js": "^2.3.5",
-    "@types/node": "^11.13.0",
-    "@types/node-fetch": "^2.3.0",
-    "prettier": "^1.16.4",
+    "@types/node": "^13.11.1",
+    "@types/node-fetch": "^2.5.6",
+    "prettier": "^2.0.4",
     "source-map-loader": "^0.2.4",
-    "ts-loader": "^5.3.3",
-    "tslint": "^5.15.0",
+    "ts-loader": "^6.2.2",
+    "tslint": "^6.1.1",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.4.2",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "tslint-plugin-prettier": "^2.3.0",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   }
 }
