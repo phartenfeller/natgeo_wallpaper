@@ -12,7 +12,7 @@
   "dependencies": {
     "is-online": "^8.2.0",
     "log4js": "^4.1.0",
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^2.6.1",
     "wallpaper": "^4.2.0"
   },
   "devDependencies": {
