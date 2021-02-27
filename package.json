@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "build": "webpack --mode=production"
+    "start": "ts-node index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -13,20 +12,22 @@
     "is-online": "^8.2.0",
     "log4js": "^4.1.0",
     "node-fetch": "^2.6.1",
+    "ts-node": "^9.1.1",
     "wallpaper": "^4.2.0"
   },
   "devDependencies": {
     "@types/log4js": "^2.3.5",
     "@types/node": "^11.13.0",
     "@types/node-fetch": "^2.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
     "prettier": "^1.16.4",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^5.3.3",
-    "tslint": "^5.15.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.4.2",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "typescript": "^3.4.2"
   }
 }

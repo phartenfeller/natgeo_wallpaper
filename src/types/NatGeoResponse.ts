@@ -15,7 +15,6 @@ export interface Rendition {
   width: string;
   uri: string;
   density: string;
-  'media-selector': string;
 }
 
 export interface Image {
@@ -36,18 +35,12 @@ export interface Image {
   croppings: any[];
 }
 
-export interface Social {
-  'og:title': string;
-  'og:description': string;
-  'twitter:site': string;
-}
-
 export interface Item {
   image: Image;
   internal: boolean;
   pageUrl: string;
   publishDate: string;
-  social: Social;
+  social: any;
 }
 
 export interface NatGeoResponse {

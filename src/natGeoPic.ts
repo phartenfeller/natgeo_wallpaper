@@ -1,16 +1,16 @@
-import fetch from 'node-fetch';
 import * as fs from 'fs';
+import * as isOnline from 'is-online';
+import { Logger } from 'log4js';
+import fetch from 'node-fetch';
 import wallpaper from 'wallpaper';
 import { createLogger } from './logger';
-import { NatGeoResponse } from './types/NatGeoResponse';
 import { DateObject } from './types/DateObject';
-import { Logger } from 'log4js';
-import * as isOnline from 'is-online';
+import { NatGeoResponse } from './types/NatGeoResponse';
 
 let logger: Logger;
 
 /**
- * Sets the wallpaper to natgeo pic of the day
+ * Sets the wallpaper
  */
 export async function setWallpaperOfTheDay() {
   const date = getDate();
@@ -30,7 +30,7 @@ export async function setWallpaperOfTheDay() {
 
   if (await checkCurrentWallpaper(fileDest)) {
     logger.info('Wallpaper already set. Cancel execution.');
-    return;
+    process.exit(0);
   }
 
   try {
@@ -150,7 +150,9 @@ async function getJson(jsonUrl: string): Promise<NatGeoResponse | undefined> {
  */
 function getPhotoUrl(json: NatGeoResponse): string {
   const lastImageObject = json.items[0];
-  return lastImageObject.image.uri;
+  const uri = lastImageObject.image.uri;
+  logger.info(`Photo URL => "${uri}"`);
+  return uri;
 }
 
 /**
@@ -169,7 +171,7 @@ async function downloadImage(url: string, fileDest: string) {
       });
 
       dest.on('finish', _ => {
-        resolve();
+        resolve(true);
       });
 
       dest.on('error', err => {
